@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,9 +15,151 @@
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@200;400;500;600&display=swap" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/responsive.css" rel="stylesheet" />
+
+  <!-- Added Digital Noise Glitch Effect Styles -->
+  <style>
+    /* Glitch Effect Styles */
+    body {
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    .glitch-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 0;
+    }
+
+    .glitch-blocks {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .scan-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, 
+          rgba(0,150,255,0), 
+          rgba(0,150,255,0.5), 
+          rgba(0,150,255,0));
+      animation: scan 60s linear infinite;
+      z-index: 0;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    @keyframes scan {
+      from { top: -10%; }
+      to { top: 110%; }
+    }
+
+    .noise-text {
+      position: relative;
+      display: inline-block;
+    }
+
+    .noise-text::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+      clip: rect(0, 900px, 0, 0);
+      animation: noise-animation 3s infinite linear alternate-reverse;
+    }
+
+    @keyframes noise-animation {
+      0% { clip: rect(86px, 9999px, 42px, 0); }
+      5% { clip: rect(20px, 9999px, 87px, 0); }
+      10% { clip: rect(35px, 9999px, 95px, 0); }
+      15% { clip: rect(93px, 9999px, 100px, 0); }
+      20% { clip: rect(92px, 9999px, 59px, 0); }
+      25% { clip: rect(37px, 9999px, 115px, 0); }
+      30% { clip: rect(73px, 9999px, 12px, 0); }
+      35% { clip: rect(70px, 9999px, 55px, 0); }
+      40% { clip: rect(21px, 9999px, 23px, 0); }
+      45% { clip: rect(80px, 9999px, 18px, 0); }
+      50% { clip: rect(12px, 9999px, 22px, 0); }
+      55% { clip: rect(63px, 9999px, 30px, 0); }
+      60% { clip: rect(76px, 9999px, 82px, 0); }
+      65% { clip: rect(18px, 9999px, 95px, 0); }
+      70% { clip: rect(25px, 9999px, 27px, 0); }
+      75% { clip: rect(35px, 9999px, 25px, 0); }
+      80% { clip: rect(55px, 9999px, 30px, 0); }
+      85% { clip: rect(86px, 9999px, 55px, 0); }
+      90% { clip: rect(38px, 9999px, 92px, 0); }
+      95% { clip: rect(53px, 9999px, 35px, 0); }
+      100% { clip: rect(65px, 9999px, 89px, 0); }
+    }
+
+    /* Add glitch effect to heading */
+    h2.glitch-heading {
+      position: relative;
+      color: rgb(0, 222, 252);
+    }
+
+    h2.glitch-heading::before,
+    h2.glitch-heading::after {
+      content: "Capability without compromise";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+
+    h2.glitch-heading::before {
+      color: #ff0050;
+      z-index: -1;
+    }
+
+    h2.glitch-heading::after {
+      color: #00ff9f;
+      z-index: -2;
+    }
+
+    h2.glitch-heading.glitching::before {
+      animation: glitch-animation 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+      opacity: 0.8;
+    }
+
+    h2.glitch-heading.glitching::after {
+      animation: glitch-animation 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes glitch-animation {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Added Digital Noise Glitch Elements -->
+  <div class="glitch-overlay" id="glitch-overlay"></div>
+  <div class="glitch-blocks" id="glitch-blocks"></div>
+  <div class="scan-line"></div>
+
   <div class="container-fluid hero_area">
     <div class="row">
       <div class="col">
@@ -30,7 +171,8 @@
           </div>
           <div class="row">
             <div class="col-12"> 
-              <h2>Capability without compromise</h2>
+              <!-- Modified heading with glitch class -->
+              <h2 class="glitch-heading">Capability without compromise</h2>
             </div>
           </div>
 
@@ -56,4 +198,97 @@
   <div class="copyright">
     <p style="font-size: 10px; color: gray;"> &copy; 2025 DarkPacket Security Corporation. All rights reserved.</p>
   </div>
+
+  <!-- Added Digital Noise Glitch JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const overlay = document.getElementById('glitch-overlay');
+      const blocks = document.getElementById('glitch-blocks');
+      const glitchHeading = document.querySelector('.glitch-heading');
+      
+      // Create digital noise effect for overlay
+      function createNoiseOverlay() {
+        let html = '';
+        const numRows = 50;
+        const numCols = 100;
+        
+        for (let i = 0; i < numRows; i++) {
+          for (let j = 0; j < numCols; j++) {
+            if (Math.random() > 0.998) {
+              const width = Math.floor(Math.random() * 3) + 1;
+              const height = Math.floor(Math.random() * 2) + 1;
+              const top = (i / numRows) * 100;
+              const left = (j / numCols) * 100;
+              const color = Math.random() > 0.5 ? 'rgba(0,170,255,0.8)' : 'rgba(255,255,255,0.8)';
+              
+              html += `<div style="position:absolute; top:${top}%; left:${left}%; 
+                        width:${width}px; height:${height}px; background-color:${color};"></div>`;
+            }
+          }
+        }
+        
+        overlay.innerHTML = html;
+      }
+      
+      // Create block glitch effect
+      function createGlitchBlocks() {
+        let html = '';
+        const numBlocks = Math.floor(Math.random() * 5) + 3;
+        
+        for (let i = 0; i < numBlocks; i++) {
+          const width = Math.floor(Math.random() * 20) + 10;
+          const height = Math.floor(Math.random() * 10) + 5;
+          const top = Math.floor(Math.random() * 90);
+          const left = Math.floor(Math.random() * 90);
+          const color = `rgba(0, ${Math.floor(Math.random() * 200) + 50}, 255, 0.3)`;
+          
+          html += `<div style="position:absolute; top:${top}%; left:${left}%; 
+                    width:${width}%; height:${height}px; background-color:${color};"></div>`;
+        }
+        
+        blocks.innerHTML = html;
+      }
+      
+      // Function to trigger glitch effect
+      function triggerGlitch() {
+        // Update noise overlay
+        createNoiseOverlay();
+        
+        // Show overlay with random opacity
+        overlay.style.opacity = (Math.random() * 0.3) + 0.1;
+        
+        // Create and show block glitches
+        createGlitchBlocks();
+        blocks.style.opacity = (Math.random() * 0.7) + 0.3;
+        
+        // Add glitching class to heading
+        glitchHeading.classList.add('glitching');
+        
+        // Hide everything after a short duration
+        setTimeout(() => {
+          overlay.style.opacity = 0;
+          blocks.style.opacity = 0;
+          glitchHeading.classList.remove('glitching');
+        }, 100 + Math.random() * 300);
+        
+        // Schedule next glitch
+        setTimeout(triggerGlitch, 2000 + Math.random() * 20000);
+      }
+      
+      // Start glitch effects
+      setTimeout(triggerGlitch, 1500);
+      
+      // Add subtle effects on mousemove
+      document.addEventListener('mousemove', function() {
+        if (Math.random() > 0.97) {
+          // Subtle glitch on mouse movement
+          overlay.style.opacity = 0.05;
+          setTimeout(() => {
+            overlay.style.opacity = 0;
+          }, 50);
+        }
+      });
+    });
+  </script>
 </body>
+</html>
