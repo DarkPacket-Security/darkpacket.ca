@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -13,47 +13,55 @@
 
   <link rel="icon" type="image/png" href="images/favicon.png" />
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@200;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/responsive.css" rel="stylesheet" />
 </head>
 
 <body>
-  <div class="container-fluid hero_area">
-    <div class="row">
-      <div class="col">
-        <div class="detail-box">
-          <div class="row">
-            <div class="col-12">
-              <img id="logo" src="images/dps-logo.png" style="width:12rem"/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12"> 
-              <h2>Capability without compromise</h2>
-            </div>
-          </div>
+  <main class="hero">
+    <div class="hero__inner">
+      <img id="logo" src="images/dps-logo.png" alt="DarkPacket Security" />
 
-          <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-lg-4 col-12 text-center">
-              <p style="color: white; text-align: center; text-justify: inter-word;">
-                We are uniquely positioned to deliver world-class offensive security services, including advanced red team operations, bespoke security assessments, specialized training programs, tailored solutions, and more.
-              
-                <p style="color: white; text-align: center; text-justify: inter-word;">
-                We work exclusively with trusted partners to achieve sovereign security outcomes and advance the national interest in ways not previously possible.
- 
-                <br class="sneaky"/></p>
-                <br class="sneaky"/></p>
-            </div>
-            <div class="footer">
-              <a href="mailto:contact@darkpacket.ca">contact@darkpacket.ca</a>
-            </div>
-          </div>
+      <h1 class="hero__tagline">Capability without compromise</h1>
+
+      <div class="hero__divider" aria-hidden="true"></div>
+
+      <p class="hero__lead">
+        DarkPacket delivers compliance advisory, governance, and awareness programs to Canadian
+        private sector organizations navigating complex security obligations. We translate cyber
+        complexity into clear, actionable outcomes.
+      </p>
+
+      <p class="hero__lead">
+        We work exclusively with trusted partners to achieve sovereign security outcomes and
+        advance the national interest in ways not previously possible.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h2 class="card__title">Advisory</h2>
+          <p class="card__text">Expert guidance that turns complex security obligations into clear, defensible decisions.</p>
+        </div>
+        <div class="card">
+          <h2 class="card__title">Training</h2>
+          <p class="card__text">Awareness programs that build a workforce capable of recognizing and resisting real threats.</p>
+        </div>
+        <div class="card">
+          <h2 class="card__title">Governance</h2>
+          <p class="card__text">Frameworks that hold your security posture accountable to the standards that matter.</p>
         </div>
       </div>
+
+      <a class="hero__contact" href="mailto:contact@darkpacket.ca">contact@darkpacket.ca</a>
     </div>
-  </div>
-  <div class="copyright">
-    <p style="font-size: 10px; color: gray;"> &copy; 2025 DarkPacket Security Corporation. All rights reserved.</p>
-  </div>
+  </main>
+
+  <footer class="copyright">
+    <p>&copy; 2026 DarkPacket Security Corporation. All rights reserved.</p>
+  </footer>
 </body>
+
+</html>
